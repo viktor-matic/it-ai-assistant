@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "content-management-backend"
+name = "assistant-backend"
 version = "0.1.0"
-description = "AI assistant content management backend service"
+description = "AI assistant backend service"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-Flask = "^3.0.0"
-ai-assistant-commons = {path = "../ai-assistant-commons", develop = true}
-
+fastapi = "^0.108.0"
+uvicorn = {extras = ["standard"], version = "^0.25.0"}
+assistant-commons = {path = "../assistant_commons", develop = true}
 
 [build-system]
 requires = ["poetry-core"]
