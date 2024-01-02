@@ -1,0 +1,45 @@
+---
+name: Reusable Python library CI
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        required: true
+        type: string
+        description: "From which folder this pipeline executes"
+      ci-timeout:
+        description: "The timeout of the ci job. Default is 25min"
+        default: 25
+        type: number
+
+jobs:
+    ci-py-template:
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+    
+        defaults:
+            run:
+                working-directory: ${{ inputs.working-directory }}
+
+        steps:
+            - uses: actions/checkout@v3
+            - name: Set up Python 3.11
+              uses: actions/setup-python@v3
+              with:
+                python-version: "3.11"
+            - name: Install dependencies
+              run: |
+                    python -m pip install --upgrade pip
+                    pip install poetry
+                    poetry install --with dev
+            - name: Lint with flake8
+              run: |
+                # stop the build if there are Python syntax errors or undefined names
+                poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+                poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+            - name: Test with pytest
+              run: |
+                poetry run pytest
+        
