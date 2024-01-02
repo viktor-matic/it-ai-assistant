@@ -33,13 +33,16 @@ jobs:
                     python -m pip install --upgrade pip
                     pip install poetry
             - uses: actions/cache@v3
+              id: cached-poetry-dependencies
               name: Define a cache for the virtual environment based on the dependencies lock file
               with:
                 path: .venv
-                key: ${{ inputs.working-directory }}-${{ hashFiles('./poetry.lock') }}
+                key: ${{ inputs.working-directory }}-${{ hashFiles('**/poetry.lock') }}
                 restore-keys: |
-                     ${{ inputs.working-directory }}-${{ hashFiles('./poetry.lock') }}
+                     ${{ inputs.working-directory }}-${{ hashFiles('**/poetry.lock') }}
             - name: Install the project dependencies
+              if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+              shell: bash
               run: poetry install --with dev   
             - name: Lint with flake8
               run: |
