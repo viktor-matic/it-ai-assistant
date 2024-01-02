@@ -28,18 +28,11 @@ jobs:
               uses: actions/setup-python@v3
               with:
                 python-version: "3.11"
+                cache: "poetry"
             - name: Install Poetry
               run: |
                     python -m pip install --upgrade pip
                     pip install poetry
-            - uses: actions/cache@v3
-              id: cached-poetry-dependencies
-              name: Define a cache for the virtual environment based on the dependencies lock file
-              with:
-                path: .venv
-                key: ${{ inputs.working-directory }}-${{ hashFiles('**/poetry.lock') }}
-                restore-keys: |
-                     ${{ inputs.working-directory }}-${{ hashFiles('**/poetry.lock') }}
             - name: Install the project dependencies
               if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
               shell: bash
