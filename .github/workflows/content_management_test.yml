@@ -12,7 +12,8 @@ on:
     branches: [ "main" ]
     paths:
       - 'content_mangement_backend/**'
-
+  
+  workflow_dispatch:
 permissions:
   contents: read
 
