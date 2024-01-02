@@ -5,6 +5,10 @@ description = "AI assistant content management backend service"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
+[virtualenvs]
+create = true
+in-project = true
+
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = "^0.108.0"
