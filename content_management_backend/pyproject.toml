@@ -11,6 +11,13 @@ fastapi = "^0.108.0"
 uvicorn = {extras = ["standard"], version = "^0.25.0"}
 assistant-commons = {path = "../assistant_commons", develop = true}
 
+[tool.poetry.scripts]
+start = "content_management_backend.main:start"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.0"
+httpx = "^0.26.0"
+flake8 = "^6.1.0"
 
 [build-system]
 requires = ["poetry-core"]

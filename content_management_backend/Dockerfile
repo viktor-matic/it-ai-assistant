@@ -13,7 +13,7 @@ ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_CREATE=1 \
     POETRY_CACHE_DIR=/tmp/poetry_cache
 
-# Create direcotries and copy project toml files
+# Create directories and copy project toml files
 RUN mkdir -p /app/${APP_NAME} /app/assistant_commons
 COPY ${APP_NAME}/pyproject.toml /app/${APP_NAME}
 COPY ${APP_NAME}/poetry.lock /app/${APP_NAME}
