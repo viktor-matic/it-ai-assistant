@@ -42,6 +42,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           file: ${{ inputs.docker-file }}
-          tags: test/${{ steps.meta.outputs.tags }}
+          tags: vmatic/${{ steps.meta.outputs.tags }}
           annotations: ${{ steps.meta.outputs.annotations }}
           push: true
