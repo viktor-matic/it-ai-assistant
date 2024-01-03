@@ -18,7 +18,7 @@ assistant-commons = {path = "../assistant_commons", develop = true}
 [tool.poetry.scripts]
 start = "content_management_backend.main:start"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"
 httpx = "^0.26.0"
 flake8 = "^6.1.0"

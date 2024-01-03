@@ -13,11 +13,10 @@ in-project = true
 [tool.poetry.dependencies]
 python = "^3.11"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"
 flake8 = "^6.1.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
