@@ -11,6 +11,11 @@ on:
         required: true
         type: string
         description: "Path to dockerfile"
+      build-number:
+        required: true
+        type: string
+        description: "Dockerimage buildnumber tag"
+
       
   workflow_dispatch:
 
@@ -43,6 +48,6 @@ jobs:
         with:
           context: .
           file: ${{ inputs.docker-file }}
-          tags: vmatic/${{ steps.meta.outputs.tags }}
+          tags: vmatic/${{ inputs.build-number }}
           annotations: ${{ steps.meta.outputs.annotations }}
           push: true
