@@ -26,6 +26,7 @@ jobs:
     with:
       working-directory: content_management_backend
     secrets: inherit
+    
   build-image-content_management_backend:
     needs: content_management_backend_test
     uses: ./.github/workflows/docker_image.yml

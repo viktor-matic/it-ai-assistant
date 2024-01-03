@@ -12,7 +12,7 @@ on:
         type: string
         description: "Path to dockerfile"
       
-      workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   docker:
