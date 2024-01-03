@@ -21,12 +21,13 @@ permissions:
 
 jobs:
 
-  ci-content_management_backend:
+  content_management_backend_test:
     uses: ./.github/workflows/python_reusable.yml
     with:
       working-directory: content_management_backend
     secrets: inherit
   build-image-content_management_backend:
+    needs: content_management_backend_test
     uses: ./.github/workflows/docker_image.yml
     with:
       image-name: content_management_backend
