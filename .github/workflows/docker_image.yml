@@ -48,6 +48,6 @@ jobs:
         with:
           context: .
           file: ${{ inputs.docker-file }}
-          tags: vmatic/${{ inputs.build-number }}
+          tags: vmatic/${{ inputs.image-name}}:${{ inputs.build-number }}
           annotations: ${{ steps.meta.outputs.annotations }}
           push: true
