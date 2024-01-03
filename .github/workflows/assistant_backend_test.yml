@@ -20,8 +20,17 @@ permissions:
 
 jobs:
 
-  ci-content_management_backend:
+  assistant_backend_test:
     uses: ./.github/workflows/python_reusable.yml
     with:
       working-directory: assistant_backend
     secrets: inherit
+
+  build-image-assistant_backend:
+      needs: assistant_backend_test
+      uses: ./.github/workflows/docker_image.yml
+      with:
+        image-name: assistant_backend
+        docker-file: assistant_backend/Dockerfile
+        build-number: ${{ github.run_number }}
+      secrets: inherit
