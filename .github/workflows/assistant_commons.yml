@@ -1,5 +1,5 @@
 
-name: Test and lint content_management_backend and assistant_backend
+name: content_management and assistant backend test lint
 
 on:
   push:

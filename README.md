@@ -6,7 +6,7 @@ This is a multimodule repository.
 # poetry config virtualenvs.in-project true
 ```
 
-No we are ready to initilize a project and install dependencies.
+Now we are ready to initialize a project and install dependencies.
 
 ```sh
 # cd content_management_backend
