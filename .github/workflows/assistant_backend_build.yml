@@ -28,7 +28,7 @@ jobs:
 
   build-image-assistant_backend:
       needs: assistant_backend_test
-      uses: ./.github/workflows/docker_image.yml
+      uses: ./.github/workflows/docker_image_reusable.yml
       with:
         image-name: assistant_backend
         docker-file: assistant_backend/Dockerfile

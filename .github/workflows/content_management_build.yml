@@ -29,7 +29,7 @@ jobs:
 
   build-image-content_management_backend:
     needs: content_management_backend_test
-    uses: ./.github/workflows/docker_image.yml
+    uses: ./.github/workflows/docker_image_reusable.yml
     with:
       image-name: content_management_backend
       docker-file: content_management_backend/Dockerfile

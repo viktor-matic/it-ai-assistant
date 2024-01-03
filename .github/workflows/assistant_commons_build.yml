@@ -1,0 +1,56 @@
+
+name: content_management and assistant backend test lint
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'assistant_commons/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'assistant_commons/**'
+  
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  assistant_commons_test:
+    uses: ./.github/workflows/python_reusable.yml
+    with:
+      working-directory: assistant_commons
+    secrets: inherit
+
+  content_management_backend_test:
+    uses: ./.github/workflows/python_reusable.yml
+    with:
+      working-directory: content_management_backend
+    secrets: inherit
+
+
+  assistant_backend_test:
+    uses: ./.github/workflows/python_reusable.yml
+    with:
+        working-directory: assistant_backend
+    secrets: inherit
+
+  build-image-content_management_backend:
+    needs: [content_management_backend_test, assistant_backend_test, assistant_commons_test]
+    uses: ./.github/workflows/docker_image_reusable.yml
+    with:
+      image-name: content_management_backend
+      docker-file: content_management_backend/Dockerfile
+      build-number: ${{ github.run_number }}
+    secrets: inherit
+
+  build-image-assistant_backend:
+    needs: [content_management_backend_test, assistant_backend_test, assistant_commons_test]
+    uses: ./.github/workflows/docker_image_reusable.yml
+    with:
+      image-name: assistant_backend
+      docker-file: assistant_backend/Dockerfile
+      build-number: ${{ github.run_number }}
+    secrets: inherit
