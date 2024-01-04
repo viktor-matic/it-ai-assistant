@@ -1,4 +1,4 @@
-name: build content_management_frontend React.js
+name: content_management_frontend build
 
 on:
   push:
