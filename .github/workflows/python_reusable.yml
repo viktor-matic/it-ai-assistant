@@ -37,7 +37,7 @@ jobs:
               id: version
               run: | 
                     poetry install --with dev
-                    echo "package_version=${poetry verision -s}" >> $GITHUB_OUTPUT
+                    echo "package_version=$(poetry version -s)" >> $GITHUB_OUTPUT
             - name: Lint with flake8
               run: |
                 # stop the build if there are Python syntax errors or undefined names
