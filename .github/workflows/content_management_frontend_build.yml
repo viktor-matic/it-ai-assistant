@@ -25,6 +25,7 @@ jobs:
       with:
         node-version: '18.12.0'
         cache: 'npm'
+        working-directory: ./content_management_frontend
     - run: npm ci
       working-directory: ./content_management_frontend
     - run: npm test
