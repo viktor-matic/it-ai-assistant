@@ -13,9 +13,9 @@ on:
         default: 25
         type: number
     outputs:
-      package-version:
+      package_version:
         description: "The version of package defined in pyproject.toml"
-        value: "0.1.0"
+        value: ${{ jobs.ci-py-template.outputs.package_version }}
 
 jobs:
     ci-py-template:
