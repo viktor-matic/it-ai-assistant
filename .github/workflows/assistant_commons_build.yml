@@ -42,7 +42,7 @@ jobs:
     with:
       image-name: content_management_backend
       docker-file: content_management_backend/Dockerfile
-      build-number: ${{ github.run_number }}
+      build-number: ${{ needs.content_management_backend_test.outputs.package_version }}-b${{ github.run_number }}
     secrets: inherit
 
   build-image-assistant_backend:
@@ -51,5 +51,5 @@ jobs:
     with:
       image-name: assistant_backend
       docker-file: assistant_backend/Dockerfile
-      build-number: ${{ github.run_number }}
+      build-number: ${{ needs.assistant_backend_test.outputs.package_version }}-b${{ github.run_number }}
     secrets: inherit
