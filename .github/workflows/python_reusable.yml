@@ -1,5 +1,5 @@
 ---
-name: Reusable Python library CI
+name: Reusable Python test/lint
 
 on:
   workflow_call:
@@ -15,7 +15,7 @@ on:
     outputs:
       package-version:
         description: "The version of package defined in pyproject.toml"
-        value: ${{ jobs.ci-py-template.outputs.package_version }}
+        value: "0.1.0"
 
 jobs:
     ci-py-template:
