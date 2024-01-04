@@ -23,33 +23,13 @@ jobs:
       working-directory: assistant_commons
     secrets: inherit
 
-  content_management_backend_test:
-    uses: ./.github/workflows/python_reusable.yml
-    with:
-      working-directory: content_management_backend
+  content_management_backend_build:
+    needs: [assistant_commons_test]
+    uses: ./.github/workflows/content_management_backend_build.yml
     secrets: inherit
 
 
-  assistant_backend_test:
-    uses: ./.github/workflows/python_reusable.yml
-    with:
-        working-directory: assistant_backend
-    secrets: inherit
-
-  build-image-content_management_backend:
-    needs: [content_management_backend_test, assistant_backend_test, assistant_commons_test]
-    uses: ./.github/workflows/docker_image_reusable.yml
-    with:
-      image-name: content_management_backend
-      docker-file: content_management_backend/Dockerfile
-      build-number: ${{ needs.content_management_backend_test.outputs.package_version }}-b${{ github.run_number }}
-    secrets: inherit
-
-  build-image-assistant_backend:
-    needs: [content_management_backend_test, assistant_backend_test, assistant_commons_test]
-    uses: ./.github/workflows/docker_image_reusable.yml
-    with:
-      image-name: assistant_backend
-      docker-file: assistant_backend/Dockerfile
-      build-number: ${{ needs.assistant_backend_test.outputs.package_version }}-b${{ github.run_number }}
+  assistant_backend_build:
+    needs: [assistant_commons_test]
+    uses: ./.github/workflows/assistant_backend_build.yml
     secrets: inherit
