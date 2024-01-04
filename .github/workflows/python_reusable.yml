@@ -21,7 +21,8 @@ jobs:
         defaults:
             run:
                 working-directory: ${{ inputs.working-directory }}
-
+        outputs:
+          package_version: ${{ steps.version.outputs.package_version }}
         steps:
             - uses: actions/checkout@v3
             - name: Set up Python 3.11
@@ -33,7 +34,10 @@ jobs:
                     python -m pip install --upgrade pip
                     pip install poetry
             - name: Install the project dependencies
-              run: poetry install --with dev   
+              id: version
+              run: | 
+                    poetry install --with dev
+                    echo "package_version=${poetry verision -s}" >> $GITHUB_OUTPUT
             - name: Lint with flake8
               run: |
                 # stop the build if there are Python syntax errors or undefined names
