@@ -12,6 +12,10 @@ on:
         description: "The timeout of the ci job. Default is 25min"
         default: 25
         type: number
+    outputs:
+      package-version:
+        description: "The version of package defined in pyproject.toml"
+        value: ${{ jobs.ci-py-template.outputs.package_version }}
 
 jobs:
     ci-py-template:

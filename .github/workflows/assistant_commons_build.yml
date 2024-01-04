@@ -1,5 +1,4 @@
-
-name: content_management and assistant backend test lint
+name: assistant_commons build
 
 on:
   push:

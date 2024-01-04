@@ -1,4 +1,4 @@
-name: content_management_backend test and lint
+name: content_management_backend build
 
 on:
   push:
