@@ -1,5 +1,5 @@
 ---
-name: Reusable Python test/lint
+name: reusable Python test/lint
 
 on:
   workflow_call:
