@@ -5,10 +5,12 @@ on:
     branches: [ "main" ]
     paths:
       - 'content_management_backend/**'
+      - 'assistant_commons/**'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'content_management_backend/**'
+      - 'assistant_commons/**'
   
   workflow_dispatch:
   workflow_call:
@@ -17,8 +19,14 @@ permissions:
   contents: read
 
 jobs:
-
+  assistant_commons_test:
+    uses: ./.github/workflows/python_reusable.yml
+    with:
+      working-directory: assistant_commons
+    secrets: inherit
+  
   content_management_backend_test:
+    needs: [assistant_commons_test]
     uses: ./.github/workflows/python_reusable.yml
     with:
       working-directory: content_management_backend
